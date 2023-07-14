@@ -6,6 +6,7 @@ import Navbar from "./navbar";
 import Signup from "./signup";
 import Login from "./login";
 import CourseDetails from "./courseDetails";
+import AddCourse from "./addCourse";
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
       <Route path="/signup" Component={Signup}/>
       <Route path="/signin" Component={Login}/>
       <Route path="/courseDetails" Component={CourseDetails}/>
+      <Route path="/add/course" Component={AddCourse}/>
     </Routes>
     </>
   )

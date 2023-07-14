@@ -2,6 +2,7 @@ const express=require("express");
 const mongoose= require("mongoose");
 const cors= require("cors");
 const jwt= require("jsonwebtoken");
+//import User from "./UserSchema";
 
 const app=express();
 app.use(cors());
@@ -32,7 +33,6 @@ const authenticateJWT= (req,res, next)=>{
     }
 }
 
-
 const userSchema= new mongoose.Schema({
     name: String,
     email: String,
@@ -43,7 +43,6 @@ const userSchema= new mongoose.Schema({
 const User=mongoose.model('user', userSchema);
 
 mongoose.connect("mongodb+srv://rohit:myMNLmffNO6uMpxy@todo.s7fvlbb.mongodb.net/?retryWrites=true&w=majority", {useNewUrlParser: true, useUnifiedTopology: true});
-
 
 app.post('/signup',async (req,res)=>{
     const {name, email, password, promotion}=req.headers;
