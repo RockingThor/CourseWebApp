@@ -1,5 +1,22 @@
+/* eslint-disable no-unused-vars */
+import axios from "axios";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom"
 function Navbar(){
+  const [loggedIn, setLoggedIn]= useState(false);
+  useEffect(()=>{
+    const checkLoggedIn= async()=>{
+      let token= await localStorage.getItem('token');
+      token= `"Bearer "+${token}`;
+      const response= await axios.post('http://localhost:3000/signup',null,{
+            headers: {authorization: token}
+      });
+      if(response.data.result){
+        setLoggedIn(true);
+      }
+    }
+    checkLoggedIn();
+  },[]);
     return (
         <>
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">

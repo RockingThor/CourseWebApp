@@ -52,8 +52,9 @@ app.post('/signup',async (req,res)=>{
     }else{
         const newUser= new User({name, email, password, promotion});
         let response= await newUser.save();
+        let token= await generateJWT({email: email});
         if(response){
-            return res.status(200).json({id: response._id});
+            return res.status(200).json({id: response._id, token: token});
         }else{
             return res.status(400).json({error: "Something is broken"});
         }
@@ -73,6 +74,10 @@ app.post('/login', async(req,res)=>{
     }else{
         res.status(403).json({error: "the user with email doesnt exist"});
     }
+});
+
+app.post('/authenticate',authenticateJWT,async(req,res)=>{
+    return res.status(200).json({result: true});
 })
 
 
