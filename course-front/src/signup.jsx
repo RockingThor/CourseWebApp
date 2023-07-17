@@ -19,7 +19,9 @@ function Signup(){
           const response= await axios.post('http://localhost:3000/signup',null,{
             headers: newUser
           });
-          console.log(response.data);
+          const jwtToken= response.data.token;
+          await localStorage.setItem('jwtToken', jwtToken);
+          window.location.href='/';
         }catch(err){
           console.log(err);
         }

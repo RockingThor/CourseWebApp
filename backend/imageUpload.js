@@ -28,6 +28,7 @@ app.post('/upload', upload.single('image'), async(req,res)=>{
         data: buffer
     });
     let response= await newImage.save();
+    //console.log(response);
     if(response){
         return res.status(200).json({id: response._id});
     }else{

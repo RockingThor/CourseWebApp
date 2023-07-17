@@ -76,9 +76,17 @@ app.post('/login', async(req,res)=>{
     }
 });
 
-app.post('/authenticate',authenticateJWT,async(req,res)=>{
-    return res.status(200).json({result: true});
+app.post('/email/getId', authenticateJWT,async(req,res)=>{
+    const email= req.user.email;
+    const user= await User.findOne({email});
+    //console.log(user);
+    return res.status(200).json({id: user._id});
 })
+
+app.post('/authenticate',authenticateJWT,async(req,res)=>{
+    return res.status(200).json({result: true, email: req.user.email});
+})
+
 
 
 app.listen(3000);

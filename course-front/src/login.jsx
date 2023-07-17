@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 //import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -21,7 +22,7 @@ function Login(){
             if(data){
                 const jwtToken= data.token;
                 localStorage.setItem('jwtToken', jwtToken);
-                navigate('/courseDetails');
+                window.location.href='/courseDetails'
             }
         }catch(error){
             console.error('Error', error);
