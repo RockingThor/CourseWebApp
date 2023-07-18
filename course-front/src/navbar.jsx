@@ -18,7 +18,8 @@ function Navbar(){
         console.log("logged in");
       }
     }
-    checkLoggedIn();
+    checkLoggedIn().then(()=>{
+    });
   },[]);
   const handleLogout= ()=>{
     localStorage.setItem('jwtToken', '');

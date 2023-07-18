@@ -9,9 +9,3 @@
   color: aliceblue;
 }
 
-.rounded-box{
-  border: 2px solid #a52020; /* Border color and thickness */
-  border-radius: 10px; /* Adjust this value to control the roundness */
-  padding: 20px;
-}
-

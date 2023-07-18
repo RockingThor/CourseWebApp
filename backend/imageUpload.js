@@ -37,8 +37,8 @@ app.post('/upload', upload.single('image'), async(req,res)=>{
 
 });
 
-app.get('/retreive', async(req,res)=>{
-    const imageId= req.body.id;
+app.get('/retreive/:id', async(req,res)=>{
+    const imageId= req.params.id;
     let response= await Image.findById(imageId);
     if(response){
         res.contentType('image/jpeg');

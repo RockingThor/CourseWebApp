@@ -37,4 +37,16 @@ app.post('/create', async(req,res)=>{
     }
 });
 
+app.get('/courses/:user', async(req,res)=>{
+    const user= req.params.user;
+    const query= {createdBy: {$eq: user}};
+    const response= await Course.find(query);
+    if(response){
+        //console.log(response);
+        return res.status(200).json({courses: response});
+    }else{
+        return res.status(404).json({error: "No courses found"});
+    }
+})
+
 app.listen(3001);
