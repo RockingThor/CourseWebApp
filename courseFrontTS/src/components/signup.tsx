@@ -20,6 +20,10 @@ function Signup(){
     const setAdmin= useSetRecoilState(adminState);
 
     const onSubmit= async()=>{
+        if(name=="" || email=="" || password.length<8){
+            alert("Invalid input!");
+            return;
+        }
         const newAdmin: admin={
             name: name,
             email: email,
@@ -59,6 +63,7 @@ function Signup(){
                     fullWidth={true}
                     label="Name"
                     variant="outlined"
+                    
                 />
                 <TextField
                     onChange={(event)=>{
@@ -68,6 +73,7 @@ function Signup(){
                     label="Email"
                     variant="outlined"
                     style={{marginTop: "1vw"}}
+                    type="email"
                 />
                 <TextField
                     onChange={(event)=>{
@@ -77,6 +83,7 @@ function Signup(){
                     label= "Password"
                     variant="outlined"
                     style={{marginTop: "1vw"}}
+                    type="password"
                 />
                 <Button
                     size="large"

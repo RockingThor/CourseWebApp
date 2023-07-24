@@ -15,7 +15,7 @@ router.post('/create',authenticateJwt,async(req,res)=>{
     }
 });
 
-router.get('/get/:user', authenticateJwt,async(req,res)=>{
+router.post('/get/:user', authenticateJwt,async(req,res)=>{
     const user= req.params.user;
     const query= {createdBy: {$eq: user}};
     const response= await Course.find(query);
