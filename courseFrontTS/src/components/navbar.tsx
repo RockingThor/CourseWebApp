@@ -15,7 +15,7 @@ import { AdminState, adminState } from '../store/atoms/admins';
 export default function Navbar() {
   const navigate= useNavigate();
   const adminstate: AdminState = useRecoilValue(adminState);
-  const setAdmin: AdminState= useSetRecoilState(adminState);
+  const setAdmin= useSetRecoilState(adminState);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
   const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -25,6 +25,12 @@ export default function Navbar() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const handleLogout= ()=>{
+    localStorage.setItem("jwtToken","");
+    setAdmin({adminEmail: null, isLoading: false});
+    navigate("/");
+  }
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -42,7 +48,7 @@ export default function Navbar() {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Course Manager
           </Typography>
-          {!adminstate.adminEmail && (
+          {(adminstate.adminEmail!=null) && (
             <div>
               <IconButton
                 size="large"
@@ -71,6 +77,7 @@ export default function Navbar() {
               >
                 <MenuItem onClick={handleClose}>Profile</MenuItem>
                 <MenuItem onClick={handleClose}>My account</MenuItem>
+                <MenuItem onClick={handleLogout}>Logout</MenuItem>
               </Menu>
             </div>
           )}

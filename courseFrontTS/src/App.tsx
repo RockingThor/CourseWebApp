@@ -8,11 +8,10 @@ import { BASE_URL } from './config'
 import { useEffect } from 'react'
 import Home from './components/home'
 import Signup from './components/signup'
+import Signin from './components/signin'
+import Courses from './components/courses'
 
-interface Response{
-  id: string;
-  email: string;
-}
+
 
 
 function App() {
@@ -24,6 +23,8 @@ function App() {
         <Routes>
           <Route path={'/'} element={<Home/>}/>
           <Route path={'/signup'} element={<Signup/>}/>
+          <Route path={'/signin'} element={<Signin/>}/>
+          <Route path={'/courses'} element={<Courses/>}/>
         </Routes>
 
     </RecoilRoot>
@@ -34,15 +35,15 @@ function InitUser(){
   const setUser=useSetRecoilState(adminState);
   const init= async()=>{
     try{
-      const response: Response= await axios.post(`${BASE_URL}/admin/verify`,null, {
+      const response= await axios.post(`${BASE_URL}/admin/verify`,null, {
         headers: {
           "authorization": "Bearer "+ localStorage.getItem("jwtToken")
         }
       });
-      if(response.email){
+      if(response.data.email){
         setUser({
           isLoading: false,
-          adminEmail: response.email
+          adminEmail: response.data.email
         })
       }else{
         setUser({

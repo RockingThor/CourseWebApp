@@ -19,7 +19,7 @@ function Home(){
                         <Typography variant={"h4"}>
                             Create and upload courses to reach the world!!
                         </Typography>
-                        {(stateAdmin.adminEmail) && <div style={{display: "flex", marginTop: 20}}>
+                        {!(stateAdmin.adminEmail!=null) && <div style={{display: "flex", marginTop: 20}}>
                             <div style={{marginRight: 10}}>
                                 <Button
                                     size="large"
