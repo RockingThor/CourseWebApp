@@ -11,6 +11,7 @@ import Menu from '@mui/material/Menu';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { AdminState, adminState } from '../store/atoms/admins';
+import { Button } from '@mui/material';
 
 export default function Navbar() {
   const navigate= useNavigate();
@@ -48,6 +49,28 @@ export default function Navbar() {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Course Manager
           </Typography>
+          {adminstate.adminEmail==null &&(
+          <>
+          <Button
+            variant='contained'
+            style={{margin: ".5vw"}}
+            size='large'
+            color='secondary'
+            onClick={()=>{
+              navigate("/signup");
+            }}
+          >Signup</Button>
+          <Button
+            style={{margin: ".5vw"}}
+            variant='contained'
+            size='large'
+            color='secondary'
+            onClick={()=>{
+              navigate("/signin");
+            }}
+          >Signin</Button>
+          </>
+          )}
           {(adminstate.adminEmail!=null) && (
             <div>
               <IconButton
